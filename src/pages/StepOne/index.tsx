@@ -9,6 +9,10 @@ const StepOne = () => {
         </p>
         <input type="number" placeholder="Your height" />
         <input type="number" placeholder="Your weight" />
+        <div className="button-container">
+          <button className="button-back">Back</button>
+          <button className="button-next">Next</button>
+        </div>
       </div>
     </div>
   );
