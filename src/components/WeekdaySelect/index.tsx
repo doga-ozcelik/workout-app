@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./WeekdaySelect.css";
+import CheckIcon from "../icons/CheckIcon";
 
 interface WeekdaySelectProps {}
 
@@ -41,13 +42,7 @@ const WeekdaySelect: React.FC<WeekdaySelectProps> = () => {
           }}
         >
           <label className="select-label">{day}</label>
-          <input
-            type="checkbox"
-            name={day}
-            //Add empty onChange function to avoid warning
-            onChange={() => {}}
-            checked={selected.includes(day)}
-          />
+          {selected.includes(day) && <CheckIcon color="#5453E3" />}
         </div>
       ))}
     </div>
