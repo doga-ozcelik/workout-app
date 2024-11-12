@@ -1,0 +1,18 @@
+.select-container {
+  width: 100%;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+.select-item {
+  padding: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.select-label {
+  font-size: 0.8rem;
+  color: #183137;
+}
