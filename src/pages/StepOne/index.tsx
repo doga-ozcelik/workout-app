@@ -7,8 +7,10 @@ const StepOne = () => {
         <p className="text">
           Let’s hear more about you to prepare your personal workout plan
         </p>
-        <input className="input" type="number" placeholder="Your height" />
-        <input className="input" type="number" placeholder="Your weight" />
+        <div className="input-container">
+          <input className="input" type="number" placeholder="Your height" />
+          <input className="input" type="number" placeholder="Your weight" />
+        </div>
         <div className="button-container">
           <button className="button-back">Back</button>
           <button className="button-next">Next</button>
