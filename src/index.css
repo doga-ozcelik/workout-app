@@ -12,7 +12,7 @@ input {
   padding: 0.7rem;
   border-radius: 0.25rem;
   border: none;
-  width: 100%;
+  box-sizing: border-box;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
