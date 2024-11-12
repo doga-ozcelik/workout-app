@@ -1,0 +1,23 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e8e8ff;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem;
+}
+
+.text {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  color: #183137;
+}
