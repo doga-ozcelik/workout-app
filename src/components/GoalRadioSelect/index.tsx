@@ -6,7 +6,8 @@ import SmileIcon from "../icons/SmileIcon";
 import RadioButton from "../RadioButton";
 
 interface GoalRadioSelectProps {
-  disabledDays?: string[];
+  goal?: string;
+  onChange?: (goal: string) => void;
 }
 
 const goals = [
@@ -15,8 +16,18 @@ const goals = [
   { icon: <SmileIcon />, name: "Stay healthy" },
 ];
 
-const GoalRadioSelect: React.FC<GoalRadioSelectProps> = () => {
-  const [selected, setSelected] = useState<string>("");
+const GoalRadioSelect: React.FC<GoalRadioSelectProps> = ({
+  goal = "",
+  onChange,
+}) => {
+  const [selected, setSelected] = useState<string>(goal);
+
+  const handleRadioChange = (selectedGoal: string) => {
+    setSelected(selectedGoal);
+    if (onChange) {
+      onChange(selectedGoal);
+    }
+  };
 
   return (
     <div className="ratio-container">
@@ -24,7 +35,7 @@ const GoalRadioSelect: React.FC<GoalRadioSelectProps> = () => {
         <div
           key={index}
           className="ratio-item"
-          onClick={() => setSelected(goal.name)}
+          onClick={() => handleRadioChange(goal.name)}
           style={{
             borderBottom:
               index !== goals.length - 1 ? "1px solid #9B9BEB" : "none",
