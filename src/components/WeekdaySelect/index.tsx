@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import "./WeekdaySelect.css";
 import CheckIcon from "../icons/CheckIcon";
 
-interface WeekdaySelectProps {}
+interface WeekdaySelectProps {
+  disabledDays?: string[];
+}
 
 const weekdays = [
   "Monday",
@@ -14,7 +16,7 @@ const weekdays = [
   "Sunday",
 ];
 
-const WeekdaySelect: React.FC<WeekdaySelectProps> = () => {
+const WeekdaySelect: React.FC<WeekdaySelectProps> = ({ disabledDays = [] }) => {
   const [selected, setSelected] = useState<string[]>([]);
 
   const handleCheckboxChange = (day: string, isChecked: boolean) => {
@@ -31,20 +33,30 @@ const WeekdaySelect: React.FC<WeekdaySelectProps> = () => {
 
   return (
     <div className="select-container">
-      {weekdays.map((day, index) => (
-        <div
-          key={day}
-          className="select-item"
-          onClick={() => handleCheckboxChange(day, selected.includes(day))}
-          style={{
-            borderBottom:
-              index !== weekdays.length - 1 ? "1px solid #9B9BEB" : "none",
-          }}
-        >
-          <label className="select-label">{day}</label>
-          {selected.includes(day) && <CheckIcon color="#5453E3" />}
-        </div>
-      ))}
+      {weekdays.map((day, index) => {
+        const isDisabled = disabledDays.includes(day);
+
+        return (
+          <div
+            key={day}
+            className={`select-item ${isDisabled ? "disabled" : ""}`}
+            onClick={() => {
+              if (!isDisabled) {
+                handleCheckboxChange(day, selected.includes(day));
+              }
+            }}
+            style={{
+              borderBottom:
+                index !== weekdays.length - 1 ? "1px solid #9B9BEB" : "none",
+            }}
+          >
+            <label>{day}</label>
+            {selected.includes(day) && !isDisabled && (
+              <CheckIcon color="#5453E3" />
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 };
