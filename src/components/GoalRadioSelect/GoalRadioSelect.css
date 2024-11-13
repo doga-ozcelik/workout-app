@@ -1,0 +1,16 @@
+.ratio-container {
+  width: 100%;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+.ratio-item {
+  padding: 1.4rem 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #183137;
+  cursor: pointer;
+}
