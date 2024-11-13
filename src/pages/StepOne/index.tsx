@@ -1,8 +1,29 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./StepOne.css";
+import axiosInstance from "../../api/axiosInstance";
 
 const StepOne = () => {
   const navigate = useNavigate();
+  const [height, setHeight] = useState<number | "">("");
+  const [weight, setWeight] = useState<number | "">("");
+
+  const handleSubmit = async () => {
+    if (weight && height) {
+      try {
+        const ratio = weight / height;
+
+        const response = await axiosInstance.post("/step1", { weight, height });
+        console.log(response.data.message);
+
+        navigate("/steptwo", { state: { ratio } });
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      alert("Please enter weight and height.");
+    }
+  };
 
   return (
     <div className="container">
@@ -11,14 +32,26 @@ const StepOne = () => {
           Let’s hear more about you to prepare your personal workout plan
         </p>
         <div className="input-container">
-          <input className="input" type="number" placeholder="Your height" />
-          <input className="input" type="number" placeholder="Your weight" />
+          <input
+            className="input"
+            type="number"
+            placeholder="Your height"
+            value={height || ""}
+            onChange={(e) => setHeight(parseFloat(e.target.value))}
+          />
+          <input
+            className="input"
+            type="number"
+            placeholder="Your weight"
+            value={weight || ""}
+            onChange={(e) => setWeight(parseFloat(e.target.value))}
+          />
         </div>
         <div className="button-container">
           <button className="button-back" disabled>
             Back
           </button>
-          <button className="button-next" onClick={() => navigate("/steptwo")}>
+          <button className="button-next" onClick={handleSubmit}>
             Next
           </button>
         </div>
