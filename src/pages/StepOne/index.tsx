@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import "./StepOne.css";
 
 const StepOne = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="container">
       <div className="form-container">
@@ -12,8 +15,12 @@ const StepOne = () => {
           <input className="input" type="number" placeholder="Your weight" />
         </div>
         <div className="button-container">
-          <button className="button-back">Back</button>
-          <button className="button-next">Next</button>
+          <button className="button-back" disabled>
+            Back
+          </button>
+          <button className="button-next" onClick={() => navigate("/steptwo")}>
+            Next
+          </button>
         </div>
       </div>
     </div>
