@@ -3,6 +3,7 @@ import "./GoalRadioSelect.css";
 import FlameIcon from "../icons/FlameIcon";
 import LevelIcon from "../icons/LevelIcon";
 import SmileIcon from "../icons/SmileIcon";
+import RadioButton from "../RadioButton";
 
 interface GoalRadioSelectProps {
   disabledDays?: string[];
@@ -33,11 +34,7 @@ const GoalRadioSelect: React.FC<GoalRadioSelectProps> = () => {
             {goal.icon}
             {goal.name}
           </label>
-          <input
-            type="radio"
-            checked={selected === goal.name}
-            onChange={() => {}}
-          />
+          <RadioButton checked={selected === goal.name} />
         </div>
       ))}
     </div>
