@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./WeekdaySelect.css";
 import CheckIcon from "../icons/CheckIcon";
+import { useTranslation } from "react-i18next";
 
 interface WeekdaySelectProps {
   disabledDays?: string[];
@@ -23,6 +24,7 @@ const WeekdaySelect: React.FC<WeekdaySelectProps> = ({
   selectedDays = [],
   onChange,
 }) => {
+  const { t } = useTranslation();
   const [selected, setSelected] = useState<string[]>(selectedDays);
 
   const handleCheckboxChange = (day: string, isChecked: boolean) => {
@@ -59,7 +61,7 @@ const WeekdaySelect: React.FC<WeekdaySelectProps> = ({
                 index !== weekdays.length - 1 ? "1px solid #9B9BEB" : "none",
             }}
           >
-            <label>{day}</label>
+            <label>{t(`weekdays.${day}`)}</label>
             {selected.includes(day) && !isDisabled && (
               <CheckIcon color="#5453E3" />
             )}

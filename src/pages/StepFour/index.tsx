@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import "./StepFour.css";
 import axiosInstance from "../../api/axiosInstance";
 import { UserDataContext } from "../../context/UserDataContext";
+import { useTranslation } from "react-i18next";
 
 const StepFour = () => {
+  const { t } = useTranslation();
   const { setUserData } = useContext(UserDataContext);
   const [name, setName] = useState<string>("");
   const [surname, setSurname] = useState<string>("");
@@ -23,7 +25,7 @@ const StepFour = () => {
         });
         console.log(response.data.message);
 
-        alert("User registered successfully");
+        alert(t("stepFourSuccess"));
         setTimeout(() => {
           setUserData({
             weight: 0,
@@ -38,26 +40,26 @@ const StepFour = () => {
         console.error(error);
       }
     } else {
-      alert("Please enter name, surname, email and password.");
+      alert(t("stepFourError"));
     }
   };
 
   return (
     <div className="container">
       <div className="form-container">
-        <p className="text">Final step. Complete your registration</p>
+        <p className="text">{t("stepFourHeader")}</p>
         <div className="input-container">
           <input
             className="input"
             type="text"
-            placeholder="Name"
+            placeholder={t("name")}
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <input
             className="input"
             type="text"
-            placeholder="Surname"
+            placeholder={t("surname")}
             value={surname}
             onChange={(e) => setSurname(e.target.value)}
           />
@@ -65,14 +67,14 @@ const StepFour = () => {
           <input
             className="input"
             type="text"
-            placeholder="E-mail"
+            placeholder={t("email")}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             className="input"
             type="password"
-            placeholder="Password"
+            placeholder={t("password")}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -82,10 +84,10 @@ const StepFour = () => {
             className="button-back"
             onClick={() => navigate("/stepthree")}
           >
-            Back
+            {t("back")}
           </button>
           <button className="button-next" onClick={handleSubmit}>
-            Save
+            {t("save")}
           </button>
         </div>
       </div>

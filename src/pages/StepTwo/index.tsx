@@ -4,8 +4,10 @@ import WeekdaySelect from "../../components/WeekdaySelect";
 import "./StepTwo.css";
 import axiosInstance from "../../api/axiosInstance";
 import { UserDataContext } from "../../context/UserDataContext";
+import { useTranslation } from "react-i18next";
 
 const StepTwo = () => {
+  const { t } = useTranslation();
   const { userData, setUserData } = useContext(UserDataContext);
   const [selectedDays, setSelectedDays] = useState<string[]>(
     userData.selectedWeekdays || []
@@ -32,7 +34,7 @@ const StepTwo = () => {
   return (
     <div className="container">
       <div className="form-container">
-        <p className="text">Pick your workout days</p>
+        <p className="text">{t("stepTwoHeader")}</p>
         <WeekdaySelect
           disabledDays={
             (userData.ratio ?? 0) > 0.5 ? ["Tuesday", "Thursday", "Friday"] : []
@@ -42,10 +44,10 @@ const StepTwo = () => {
         />
         <div className="button-container">
           <button className="button-back" onClick={() => navigate("/")}>
-            Back
+            {t("back")}
           </button>
           <button className="button-next" onClick={handleSubmit}>
-            Next
+            {t("next")}
           </button>
         </div>
       </div>

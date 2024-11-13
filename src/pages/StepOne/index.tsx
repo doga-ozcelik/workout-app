@@ -3,8 +3,11 @@ import { useNavigate } from "react-router-dom";
 import "./StepOne.css";
 import axiosInstance from "../../api/axiosInstance";
 import { UserDataContext } from "../../context/UserDataContext";
+import { useTranslation } from "react-i18next";
+import { changeLanguage } from "i18next";
 
 const StepOne = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { userData, setUserData } = useContext(UserDataContext);
   const [height, setHeight] = useState<number | "">(userData.height || "");
@@ -30,38 +33,38 @@ const StepOne = () => {
         console.error(error);
       }
     } else {
-      alert("Please enter weight and height.");
+      alert(t("stepOneError"));
     }
   };
 
   return (
     <div className="container">
       <div className="form-container">
-        <p className="text">
-          Let’s hear more about you to prepare your personal workout plan
-        </p>
+        <p className="text">{t("stepOneHeader")}</p>
+        <button onClick={() => changeLanguage("en")}>English</button>
+        <button onClick={() => changeLanguage("ar")}>العربية</button>
         <div className="input-container">
           <input
             className="input"
             type="number"
-            placeholder="Your height"
+            placeholder={t("height")}
             value={height || ""}
             onChange={(e) => setHeight(parseFloat(e.target.value))}
           />
           <input
             className="input"
             type="number"
-            placeholder="Your weight"
+            placeholder={t("weight")}
             value={weight || ""}
             onChange={(e) => setWeight(parseFloat(e.target.value))}
           />
         </div>
         <div className="button-container">
           <button className="button-back" disabled>
-            Back
+            {t("back")}
           </button>
           <button className="button-next" onClick={handleSubmit}>
-            Next
+            {t("next")}
           </button>
         </div>
       </div>

@@ -1,0 +1,32 @@
+{
+  "stepOneHeader": "Let’s hear more about you to prepare your personal workout plan",
+  "height": "Your height",
+  "weight": "Your weight",
+  "stepOneError": "Please enter weight and height.",
+  "stepTwoHeader": "Pick your workout days",
+  "weekdays": {
+    "Monday": "Monday",
+    "Tuesday": "Tuesday",
+    "Wednesday": "Wednesday",
+    "Thursday": "Thursday",
+    "Friday": "Friday",
+    "Saturday": "Saturday",
+    "Sunday": "Sunday"
+  },
+  "stepThreeHeader": "What is your fitness goal?",
+  "goals": {
+    "lose_weight": "Lose weight",
+    "build_muscle": "Build muscle",
+    "stay_healthy": "Stay healthy"
+  },
+  "stepFourHeader": "Final step. Complete your registration",
+  "name": "Name",
+  "surname": "Surname",
+  "email": "Email",
+  "password": "Password",
+  "stepFourError": "Please enter name, surname, email and password.",
+  "stepFourSuccess": "You have successfully registered.",
+  "back": "Back",
+  "next": "Next",
+  "save": "Save"
+}

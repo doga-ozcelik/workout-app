@@ -4,6 +4,7 @@ import FlameIcon from "../icons/FlameIcon";
 import LevelIcon from "../icons/LevelIcon";
 import SmileIcon from "../icons/SmileIcon";
 import RadioButton from "../RadioButton";
+import { useTranslation } from "react-i18next";
 
 interface GoalRadioSelectProps {
   goal?: string;
@@ -11,15 +12,16 @@ interface GoalRadioSelectProps {
 }
 
 const goals = [
-  { icon: <FlameIcon />, name: "Lose weight" },
-  { icon: <LevelIcon />, name: "Build muscle" },
-  { icon: <SmileIcon />, name: "Stay healthy" },
+  { icon: <FlameIcon />, key: "lose_weight" },
+  { icon: <LevelIcon />, key: "build_muscle" },
+  { icon: <SmileIcon />, key: "stay_healthy" },
 ];
 
 const GoalRadioSelect: React.FC<GoalRadioSelectProps> = ({
   goal = "",
   onChange,
 }) => {
+  const { t } = useTranslation();
   const [selected, setSelected] = useState<string>(goal);
 
   const handleRadioChange = (selectedGoal: string) => {
@@ -35,7 +37,7 @@ const GoalRadioSelect: React.FC<GoalRadioSelectProps> = ({
         <div
           key={index}
           className="ratio-item"
-          onClick={() => handleRadioChange(goal.name)}
+          onClick={() => handleRadioChange(goal.key)}
           style={{
             borderBottom:
               index !== goals.length - 1 ? "1px solid #9B9BEB" : "none",
@@ -43,9 +45,9 @@ const GoalRadioSelect: React.FC<GoalRadioSelectProps> = ({
         >
           <label className="ratio-label">
             {goal.icon}
-            {goal.name}
+            {t(`goals.${goal.key}`)}
           </label>
-          <RadioButton checked={selected === goal.name} />
+          <RadioButton checked={selected === goal.key} />
         </div>
       ))}
     </div>
