@@ -22,7 +22,7 @@ const GoalRadioSelect: React.FC<GoalRadioSelectProps> = () => {
     <div className="ratio-container">
       {goals.map((goal, index) => (
         <div
-          key={goal.name}
+          key={index}
           className="ratio-item"
           onClick={() => setSelected(goal.name)}
           style={{
