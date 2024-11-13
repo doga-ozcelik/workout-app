@@ -1,8 +1,8 @@
 import "./App.css";
-import StepOne from "./pages/StepOne";
+import StepTwo from "./pages/StepTwo";
 
 function App() {
-  return <StepOne />;
+  return <StepTwo />;
 }
 
 export default App;
