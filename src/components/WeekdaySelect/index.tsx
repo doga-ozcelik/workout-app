@@ -4,6 +4,8 @@ import CheckIcon from "../icons/CheckIcon";
 
 interface WeekdaySelectProps {
   disabledDays?: string[];
+  selectedDays?: string[];
+  onChange?: (selectedDays: string[]) => void;
 }
 
 const weekdays = [
@@ -16,8 +18,12 @@ const weekdays = [
   "Sunday",
 ];
 
-const WeekdaySelect: React.FC<WeekdaySelectProps> = ({ disabledDays = [] }) => {
-  const [selected, setSelected] = useState<string[]>([]);
+const WeekdaySelect: React.FC<WeekdaySelectProps> = ({
+  disabledDays = [],
+  selectedDays = [],
+  onChange,
+}) => {
+  const [selected, setSelected] = useState<string[]>(selectedDays);
 
   const handleCheckboxChange = (day: string, isChecked: boolean) => {
     let updatedSelectedDays = [...selected];
@@ -29,6 +35,9 @@ const WeekdaySelect: React.FC<WeekdaySelectProps> = ({ disabledDays = [] }) => {
     }
 
     setSelected(updatedSelectedDays);
+    if (onChange) {
+      onChange(updatedSelectedDays);
+    }
   };
 
   return (
