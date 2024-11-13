@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./StepFour.css";
 import axiosInstance from "../../api/axiosInstance";
+import { UserDataContext } from "../../context/UserDataContext";
 
 const StepFour = () => {
+  const { setUserData } = useContext(UserDataContext);
   const [name, setName] = useState<string>("");
   const [surname, setSurname] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -23,6 +25,13 @@ const StepFour = () => {
 
         alert("User registered successfully");
         setTimeout(() => {
+          setUserData({
+            weight: 0,
+            height: 0,
+            ratio: 0,
+            selectedWeekdays: [],
+            goal: "",
+          });
           navigate("/");
         }, 2000);
       } catch (error) {

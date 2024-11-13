@@ -1,22 +1,31 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./StepOne.css";
 import axiosInstance from "../../api/axiosInstance";
+import { UserDataContext } from "../../context/UserDataContext";
 
 const StepOne = () => {
   const navigate = useNavigate();
-  const [height, setHeight] = useState<number | "">("");
-  const [weight, setWeight] = useState<number | "">("");
+  const { userData, setUserData } = useContext(UserDataContext);
+  const [height, setHeight] = useState<number | "">(userData.height || "");
+  const [weight, setWeight] = useState<number | "">(userData.weight || "");
 
   const handleSubmit = async () => {
     if (weight && height) {
       try {
         const ratio = weight / height;
+        setUserData((prevData) => ({
+          ...prevData,
+          weight,
+          height,
+          ratio,
+          selectedWeekdays: [],
+        }));
 
         const response = await axiosInstance.post("/step1", { weight, height });
         console.log(response.data.message);
 
-        navigate("/steptwo", { state: { ratio } });
+        navigate("/steptwo");
       } catch (error) {
         console.error(error);
       }

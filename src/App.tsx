@@ -4,15 +4,18 @@ import StepFour from "./pages/StepFour";
 import StepOne from "./pages/StepOne";
 import StepTwo from "./pages/StepTwo";
 import StepThree from "./pages/StepThree";
+import { UserDataProvider } from "./context/UserDataContext";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<StepOne />} />
-      <Route path="/steptwo" element={<StepTwo />} />
-      <Route path="/stepthree" element={<StepThree />} />
-      <Route path="/stepfour" element={<StepFour />} />
-    </Routes>
+    <UserDataProvider>
+      <Routes>
+        <Route path="/" element={<StepOne />} />
+        <Route path="/steptwo" element={<StepTwo />} />
+        <Route path="/stepthree" element={<StepThree />} />
+        <Route path="/stepfour" element={<StepFour />} />
+      </Routes>
+    </UserDataProvider>
   );
 }
 

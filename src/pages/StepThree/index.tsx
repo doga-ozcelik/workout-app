@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GoalRadioSelect from "../../components/GoalRadioSelect";
 import "./StepThree.css";
 import axiosInstance from "../../api/axiosInstance";
+import { UserDataContext } from "../../context/UserDataContext";
 
 const StepThree = () => {
-  const [goal, setGoal] = useState<string>("");
+  const { userData, setUserData } = useContext(UserDataContext);
+  const [goal, setGoal] = useState<string>(userData.goal || "");
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
     try {
+      setUserData((prevData) => ({
+        ...prevData,
+        goal,
+      }));
+
       const response = await axiosInstance.post("/step3", { goal });
       console.log(response.data.message);
 

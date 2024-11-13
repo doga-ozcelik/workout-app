@@ -1,17 +1,25 @@
-import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import WeekdaySelect from "../../components/WeekdaySelect";
 import "./StepTwo.css";
 import axiosInstance from "../../api/axiosInstance";
+import { UserDataContext } from "../../context/UserDataContext";
 
 const StepTwo = () => {
-  const [selectedDays, setSelectedDays] = useState<string[]>([]);
+  const { userData, setUserData } = useContext(UserDataContext);
+  const [selectedDays, setSelectedDays] = useState<string[]>(
+    userData.selectedWeekdays || []
+  );
   const navigate = useNavigate();
-  const location = useLocation();
-  const { ratio } = location.state as { ratio: number };
+  console.log("userData", userData);
 
   const handleSubmit = async () => {
     try {
+      setUserData((prevData) => ({
+        ...prevData,
+        selectedWeekdays: selectedDays,
+      }));
+
       const response = await axiosInstance.post("/step2", { selectedDays });
       console.log(response.data.message);
 
@@ -26,7 +34,9 @@ const StepTwo = () => {
       <div className="form-container">
         <p className="text">Pick your workout days</p>
         <WeekdaySelect
-          disabledDays={ratio > 0.5 ? ["Tuesday", "Thursday", "Friday"] : []}
+          disabledDays={
+            (userData.ratio ?? 0) > 0.5 ? ["Tuesday", "Thursday", "Friday"] : []
+          }
           selectedDays={selectedDays}
           onChange={setSelectedDays}
         />
