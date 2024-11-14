@@ -25,6 +25,29 @@ i18n
     interpolation: {
       escapeValue: false,
     },
+    detection: {
+      order: ["localStorage", "navigator"],
+      caches: ["localStorage"],
+    },
+  })
+  .then(() => {
+    const currentLanguage = i18n.language;
+    const dir = currentLanguage === "ar" ? "rtl" : "ltr";
+    document.documentElement.setAttribute("dir", dir);
+    document.documentElement.setAttribute("lang", currentLanguage);
   });
 
 export default i18n;
+
+export const changeLanguage = (lng: string) => {
+  i18n.changeLanguage(lng);
+  const html = document.documentElement;
+
+  if (lng === "ar") {
+    html.setAttribute("dir", "rtl");
+    html.setAttribute("lang", "ar");
+  } else {
+    html.setAttribute("dir", "ltr");
+    html.setAttribute("lang", lng);
+  }
+};

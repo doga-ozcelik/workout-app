@@ -4,7 +4,7 @@ import "./StepOne.css";
 import axiosInstance from "../../api/axiosInstance";
 import { UserDataContext } from "../../context/UserDataContext";
 import { useTranslation } from "react-i18next";
-import { changeLanguage } from "i18next";
+import { changeLanguage } from "../../i18n";
 
 const StepOne = () => {
   const { t } = useTranslation();
