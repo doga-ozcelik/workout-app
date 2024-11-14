@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import WeekdaySelect from "../../components/WeekdaySelect";
-import "./StepTwo.css";
 import axiosInstance from "../../api/axiosInstance";
 import { UserDataContext } from "../../context/UserDataContext";
 import { useTranslation } from "react-i18next";
+import FormShell from "../../components/FormShell";
 
 const StepTwo = () => {
   const { t } = useTranslation();
@@ -32,26 +32,19 @@ const StepTwo = () => {
   };
 
   return (
-    <div className="container">
-      <div className="form-container">
-        <p className="text">{t("stepTwoHeader")}</p>
-        <WeekdaySelect
-          disabledDays={
-            (userData.ratio ?? 0) > 0.5 ? ["Tuesday", "Thursday", "Friday"] : []
-          }
-          selectedDays={selectedDays}
-          onChange={setSelectedDays}
-        />
-        <div className="button-container">
-          <button className="button-back" onClick={() => navigate("/")}>
-            {t("back")}
-          </button>
-          <button className="button-next" onClick={handleSubmit}>
-            {t("next")}
-          </button>
-        </div>
-      </div>
-    </div>
+    <FormShell
+      title={t("stepTwoHeader")}
+      handleSubmit={handleSubmit}
+      handleBackNav={() => navigate("/")}
+    >
+      <WeekdaySelect
+        disabledDays={
+          (userData.ratio ?? 0) > 0.5 ? ["Tuesday", "Thursday", "Friday"] : []
+        }
+        selectedDays={selectedDays}
+        onChange={setSelectedDays}
+      />
+    </FormShell>
   );
 };
 

@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GoalRadioSelect from "../../components/GoalRadioSelect";
-import "./StepThree.css";
 import axiosInstance from "../../api/axiosInstance";
 import { UserDataContext } from "../../context/UserDataContext";
 import { useTranslation } from "react-i18next";
+import FormShell from "../../components/FormShell";
 
 const StepThree = () => {
   const { t } = useTranslation();
@@ -29,20 +29,13 @@ const StepThree = () => {
   };
 
   return (
-    <div className="container">
-      <div className="form-container">
-        <p className="text">{t("stepThreeHeader")}</p>
-        <GoalRadioSelect goal={goal} onChange={setGoal} />
-        <div className="button-container">
-          <button className="button-back" onClick={() => navigate("/steptwo")}>
-            {t("back")}
-          </button>
-          <button className="button-next" onClick={handleSubmit}>
-            {t("next")}
-          </button>
-        </div>
-      </div>
-    </div>
+    <FormShell
+      title={t("stepThreeHeader")}
+      handleSubmit={handleSubmit}
+      handleBackNav={() => navigate("/steptwo")}
+    >
+      <GoalRadioSelect goal={goal} onChange={setGoal} />
+    </FormShell>
   );
 };
 

@@ -4,6 +4,7 @@ import "./StepOne.css";
 import axiosInstance from "../../api/axiosInstance";
 import { UserDataContext } from "../../context/UserDataContext";
 import { useTranslation } from "react-i18next";
+import FormShell from "../../components/FormShell";
 
 const StepOne = () => {
   const { t } = useTranslation();
@@ -37,35 +38,28 @@ const StepOne = () => {
   };
 
   return (
-    <div className="container">
-      <div className="form-container">
-        <p className="text">{t("stepOneHeader")}</p>
-        <div className="input-container">
-          <input
-            className="input"
-            type="number"
-            placeholder={t("height")}
-            value={height || ""}
-            onChange={(e) => setHeight(parseFloat(e.target.value))}
-          />
-          <input
-            className="input"
-            type="number"
-            placeholder={t("weight")}
-            value={weight || ""}
-            onChange={(e) => setWeight(parseFloat(e.target.value))}
-          />
-        </div>
-        <div className="button-container">
-          <button className="button-back" disabled>
-            {t("back")}
-          </button>
-          <button className="button-next" onClick={handleSubmit}>
-            {t("next")}
-          </button>
-        </div>
+    <FormShell
+      title={t("stepOneHeader")}
+      handleSubmit={handleSubmit}
+      isBackDisabled
+    >
+      <div className="input-container">
+        <input
+          className="input"
+          type="number"
+          placeholder={t("height")}
+          value={height || ""}
+          onChange={(e) => setHeight(parseFloat(e.target.value))}
+        />
+        <input
+          className="input"
+          type="number"
+          placeholder={t("weight")}
+          value={weight || ""}
+          onChange={(e) => setWeight(parseFloat(e.target.value))}
+        />
       </div>
-    </div>
+    </FormShell>
   );
 };
 

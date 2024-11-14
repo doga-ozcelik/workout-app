@@ -17,22 +17,11 @@
   height: 60vh;
 }
 
-.input-container {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  width: 100%;
-}
-
 .text {
   font-size: 1rem;
   font-weight: 600;
   text-align: center;
   color: #183137;
-}
-
-.input {
-  width: 100%;
 }
 
 .button-container {

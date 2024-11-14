@@ -4,6 +4,7 @@ import "./StepFour.css";
 import axiosInstance from "../../api/axiosInstance";
 import { UserDataContext } from "../../context/UserDataContext";
 import { useTranslation } from "react-i18next";
+import FormShell from "../../components/FormShell";
 
 const StepFour = () => {
   const { t } = useTranslation();
@@ -45,53 +46,44 @@ const StepFour = () => {
   };
 
   return (
-    <div className="container">
-      <div className="form-container">
-        <p className="text">{t("stepFourHeader")}</p>
-        <div className="input-container">
-          <input
-            className="input"
-            type="text"
-            placeholder={t("name")}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            className="input"
-            type="text"
-            placeholder={t("surname")}
-            value={surname}
-            onChange={(e) => setSurname(e.target.value)}
-          />
-          <br />
-          <input
-            className="input"
-            type="text"
-            placeholder={t("email")}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            className="input"
-            type="password"
-            placeholder={t("password")}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className="button-container">
-          <button
-            className="button-back"
-            onClick={() => navigate("/stepthree")}
-          >
-            {t("back")}
-          </button>
-          <button className="button-next" onClick={handleSubmit}>
-            {t("save")}
-          </button>
-        </div>
+    <FormShell
+      title={t("stepFourHeader")}
+      handleSubmit={handleSubmit}
+      submitButtonLabel={t("save")}
+      handleBackNav={() => navigate("/stepthree")}
+    >
+      <div className="input-container">
+        <input
+          className="input"
+          type="text"
+          placeholder={t("name")}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          className="input"
+          type="text"
+          placeholder={t("surname")}
+          value={surname}
+          onChange={(e) => setSurname(e.target.value)}
+        />
+        <br />
+        <input
+          className="input"
+          type="text"
+          placeholder={t("email")}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          className="input"
+          type="password"
+          placeholder={t("password")}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
       </div>
-    </div>
+    </FormShell>
   );
 };
 
