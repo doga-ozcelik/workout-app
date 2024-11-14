@@ -4,7 +4,6 @@ import "./StepOne.css";
 import axiosInstance from "../../api/axiosInstance";
 import { UserDataContext } from "../../context/UserDataContext";
 import { useTranslation } from "react-i18next";
-import { changeLanguage } from "../../i18n";
 
 const StepOne = () => {
   const { t } = useTranslation();
@@ -41,8 +40,6 @@ const StepOne = () => {
     <div className="container">
       <div className="form-container">
         <p className="text">{t("stepOneHeader")}</p>
-        <button onClick={() => changeLanguage("en")}>English</button>
-        <button onClick={() => changeLanguage("ar")}>العربية</button>
         <div className="input-container">
           <input
             className="input"

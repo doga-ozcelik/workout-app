@@ -5,6 +5,7 @@ import StepOne from "./pages/StepOne";
 import StepTwo from "./pages/StepTwo";
 import StepThree from "./pages/StepThree";
 import { UserDataProvider } from "./context/UserDataContext";
+import ChooseLanguage from "./pages/ChooseLanguage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/steptwo" element={<StepTwo />} />
         <Route path="/stepthree" element={<StepThree />} />
         <Route path="/stepfour" element={<StepFour />} />
+        <Route path="/chooselanguage" element={<ChooseLanguage />} />
       </Routes>
     </UserDataProvider>
   );
