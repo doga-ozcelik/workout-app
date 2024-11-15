@@ -5,10 +5,12 @@ import axiosInstance from "../../api/axiosInstance";
 import { UserDataContext } from "../../context/UserDataContext";
 import { useTranslation } from "react-i18next";
 import FormShell from "../../components/FormShell";
+import { NavigationContext } from "../../context/NavigationContext";
 
 const StepFour = () => {
   const { t } = useTranslation();
   const { setUserData } = useContext(UserDataContext);
+  const { setDirection } = useContext(NavigationContext);
   const [name, setName] = useState<string>("");
   const [surname, setSurname] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -45,12 +47,17 @@ const StepFour = () => {
     }
   };
 
+  const handleBack = () => {
+    setDirection("back");
+    navigate("/stepthree");
+  };
+
   return (
     <FormShell
       title={t("stepFourHeader")}
       handleSubmit={handleSubmit}
       submitButtonLabel={t("save")}
-      handleBackNav={() => navigate("/stepthree")}
+      handleBackNav={handleBack}
     >
       <div className="input-container">
         <input

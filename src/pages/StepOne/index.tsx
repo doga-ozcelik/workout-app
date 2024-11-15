@@ -5,11 +5,13 @@ import axiosInstance from "../../api/axiosInstance";
 import { UserDataContext } from "../../context/UserDataContext";
 import { useTranslation } from "react-i18next";
 import FormShell from "../../components/FormShell";
+import { NavigationContext } from "../../context/NavigationContext";
 
 const StepOne = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { userData, setUserData } = useContext(UserDataContext);
+  const { setDirection } = useContext(NavigationContext);
   const [height, setHeight] = useState<number | "">(userData.height || "");
   const [weight, setWeight] = useState<number | "">(userData.weight || "");
 
@@ -28,6 +30,7 @@ const StepOne = () => {
         const response = await axiosInstance.post("/step1", { weight, height });
         console.log(response.data.message);
 
+        setDirection("next");
         navigate("/steptwo");
       } catch (error) {
         console.error(error);

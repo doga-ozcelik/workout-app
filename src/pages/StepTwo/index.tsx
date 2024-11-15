@@ -5,10 +5,12 @@ import axiosInstance from "../../api/axiosInstance";
 import { UserDataContext } from "../../context/UserDataContext";
 import { useTranslation } from "react-i18next";
 import FormShell from "../../components/FormShell";
+import { NavigationContext } from "../../context/NavigationContext";
 
 const StepTwo = () => {
   const { t } = useTranslation();
   const { userData, setUserData } = useContext(UserDataContext);
+  const { setDirection } = useContext(NavigationContext);
   const [selectedDays, setSelectedDays] = useState<string[]>(
     userData.selectedWeekdays || []
   );
@@ -25,17 +27,23 @@ const StepTwo = () => {
       const response = await axiosInstance.post("/step2", { selectedDays });
       console.log(response.data.message);
 
+      setDirection("next");
       navigate("/stepthree");
     } catch (error) {
       console.error(error);
     }
   };
 
+  const handleBack = () => {
+    setDirection("back");
+    navigate("/");
+  };
+
   return (
     <FormShell
       title={t("stepTwoHeader")}
       handleSubmit={handleSubmit}
-      handleBackNav={() => navigate("/")}
+      handleBackNav={handleBack}
     >
       <WeekdaySelect
         disabledDays={
