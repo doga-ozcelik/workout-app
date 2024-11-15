@@ -17,14 +17,12 @@ A simple and efficient workout tracking application built with React and TypeScr
 ```
 git clone https://github.com/doga-ozcelik/workout-app.git
 cd workout-app
-
 ```
 
 2. Install dependencies
 
 ```
 npm install
-
 ```
 
 ## Usage
@@ -35,7 +33,6 @@ Start the development server:
 
 ```
 npm start
-
 ```
 
 Open http://localhost:3000 to view the app in your browser.
@@ -46,7 +43,6 @@ Build the app for production:
 
 ```
 npm run build
-
 ```
 
 ### Testing
@@ -55,7 +51,6 @@ Run tests using Vitest:
 
 ```
 npm test
-
 ```
 
 ## Technologies Used
