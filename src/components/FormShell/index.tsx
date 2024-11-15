@@ -23,7 +23,13 @@ const FormShell: React.FC<FormShellProps> = ({
 
   return (
     <div className="container">
-      <div className="form-container">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit();
+        }}
+        className="form-container"
+      >
         <p className="text">{title}</p>
         {children}
         <div className="button-container">
@@ -34,11 +40,11 @@ const FormShell: React.FC<FormShellProps> = ({
           >
             {t("back")}
           </button>
-          <button className="button-next" onClick={handleSubmit}>
+          <button className="button-next" type="submit">
             {submitButtonLabel}
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

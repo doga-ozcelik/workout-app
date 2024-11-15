@@ -35,8 +35,6 @@ const StepOne = () => {
       } catch (error) {
         console.error(error);
       }
-    } else {
-      alert(t("stepOneError"));
     }
   };
 
@@ -50,6 +48,7 @@ const StepOne = () => {
         <input
           className="input"
           type="number"
+          required
           placeholder={t("height")}
           value={height || ""}
           onChange={(e) => setHeight(parseFloat(e.target.value))}
@@ -57,6 +56,7 @@ const StepOne = () => {
         <input
           className="input"
           type="number"
+          required
           placeholder={t("weight")}
           value={weight || ""}
           onChange={(e) => setWeight(parseFloat(e.target.value))}

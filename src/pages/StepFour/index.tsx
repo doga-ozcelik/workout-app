@@ -18,32 +18,30 @@ const StepFour = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    if (name && surname && email && password) {
-      try {
-        const response = await axiosInstance.post("/step4", {
-          name,
-          surname,
-          email,
-          password,
-        });
-        console.log(response.data.message);
+    try {
+      const response = await axiosInstance.post("/step4", {
+        name,
+        surname,
+        email,
+        password,
+      });
+      console.log(response.data.message);
 
-        alert(t("stepFourSuccess"));
-        setTimeout(() => {
-          setUserData({
-            weight: 0,
-            height: 0,
-            ratio: 0,
-            selectedWeekdays: [],
-            goal: "",
-          });
-          navigate("/");
-        }, 2000);
-      } catch (error) {
-        console.error(error);
-      }
-    } else {
-      alert(t("stepFourError"));
+      alert(t("stepFourSuccess"));
+      setTimeout(() => {
+        setUserData({
+          weight: 0,
+          height: 0,
+          ratio: 0,
+          selectedWeekdays: [],
+          goal: "",
+        });
+
+        setDirection("back");
+        navigate("/");
+      }, 2000);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -63,6 +61,8 @@ const StepFour = () => {
         <input
           className="input"
           type="text"
+          required
+          minLength={2}
           placeholder={t("name")}
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -70,6 +70,8 @@ const StepFour = () => {
         <input
           className="input"
           type="text"
+          required
+          minLength={2}
           placeholder={t("surname")}
           value={surname}
           onChange={(e) => setSurname(e.target.value)}
@@ -77,7 +79,8 @@ const StepFour = () => {
         <br />
         <input
           className="input"
-          type="text"
+          type="email"
+          required
           placeholder={t("email")}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -85,6 +88,8 @@ const StepFour = () => {
         <input
           className="input"
           type="password"
+          required
+          minLength={8}
           placeholder={t("password")}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
